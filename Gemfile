@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.2.2 "
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
 gem "pg", "~> 1.1"
 gem "puma", "~> 5.0"
@@ -14,7 +14,7 @@ group :development, :test do
   gem "pry-doc"
   gem "pry-rails"
   gem "rubocop"
-  gem "factory_bot"
+  gem "factory_bot_rails"
   gem "faker"
 end
 
@@ -24,3 +24,5 @@ group :test do
 end
 
 
+
+gem "devise", "~> 4.9"
