@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe Friend, type: :model do
-  # include_examples 'valid_factory', :friend
+  include_examples 'valid_factory', :friend
 
   context 'associations' do
     it { is_expected.to have_many(:posts) }
@@ -11,5 +11,6 @@ RSpec.describe Friend, type: :model do
 
   context 'validations' do
     it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
   end
 end

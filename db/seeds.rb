@@ -3,5 +3,7 @@
 #
 # Examples:
 #
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+  friends = FactoryBot.create_list(:friend, 3)
+  posts = friends.each do |friend|
+    FactoryBot.create_list(:post, 3, friend: friend)
+  end
