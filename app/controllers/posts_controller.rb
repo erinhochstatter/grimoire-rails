@@ -3,10 +3,15 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = if params[:filter].is_empty
-               Post.all
-             else
+    @posts = case params[:filter]
+             when 'articles'
                Post.articles
+             when 'books'
+               Post.books
+             when 'podcasts'
+               Post.podcasts
+             else
+               Post.all
              end
     render json: { posts: @posts }
   end
@@ -54,6 +59,7 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :string, :kind, :string, :datePublished, :Date, :filter)
+    params.require(:post).permit(:author, :string, :title, :string, :kind, :string, :datePublished, :Date, :filter,
+                                 :friend_id, :int)
   end
 end

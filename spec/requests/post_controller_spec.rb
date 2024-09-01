@@ -14,7 +14,7 @@ RSpec.describe '/post', type: :request do
 
   describe 'GET /index' do
     describe 'without params' do
-      it 'renders a successful response' do
+      it 'renders a successful response, and returns all posts' do
         Post.create! valid_attributes
         get posts_url
         expect(response).to be_successful
@@ -27,7 +27,7 @@ RSpec.describe '/post', type: :request do
       let(:json_response) { JSON.parse(response.body) }
 
       it 'it returns only the kind of post in the param, when there is a query param' do
-        get posts_url, params: { kind: 'article' }
+        get posts_url, params: { kind: 'articles' }
         expect(json_response).to eq({ 'posts' => [article_post.as_json] })
         expect(response).to be_successful
       end
