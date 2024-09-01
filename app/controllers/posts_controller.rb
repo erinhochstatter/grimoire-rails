@@ -21,10 +21,6 @@ class PostsController < ApplicationController
     render json: @post, root: true
   end
 
-  def index_filter
-    params[:filter] if Post::Filters::ALL.include?(params[:filter])
-  end
-
   # POST /posts
   def create
     @post = Post.new(post_params)

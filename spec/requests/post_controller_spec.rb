@@ -8,6 +8,7 @@ RSpec.describe '/post', type: :request do
       author: Faker::Book.author,
       kind: 'game',
       datePublished: 5.years.ago,
+      title: '',
       friend:
     }
   end
@@ -27,7 +28,7 @@ RSpec.describe '/post', type: :request do
       let(:json_response) { JSON.parse(response.body) }
 
       it 'it returns only the kind of post in the param, when there is a query param' do
-        get posts_url, params: { kind: 'articles' }
+        get posts_url, params: { filter: 'articles' }
         expect(json_response).to eq({ 'posts' => [article_post.as_json] })
         expect(response).to be_successful
       end
@@ -103,10 +104,10 @@ RSpec.describe '/post', type: :request do
       end.to change(Post, :count).by(-1)
     end
 
-    it 'redirects to the posts post' do
+    it 'returns a no content response' do
       post = Post.create! valid_attributes
       delete post_url(post)
-      expect(response).to redirect_to(posts_url)
+      expect(response).to have_http_status(:no_content)
     end
   end
 end
