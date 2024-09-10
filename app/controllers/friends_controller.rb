@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  before_action :set_friend, only: %i[ show update destroy ]
+  before_action :set_friend, only: %i[show update destroy]
 
   # GET /friends
   def index
@@ -39,13 +39,14 @@ class FriendsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_friend
-      @friend = Friend.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def friend_params
-      params.fetch(:friend, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_friend
+    @friend = Friend.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def friend_params
+    params.fetch(:friend, {})
+  end
 end
