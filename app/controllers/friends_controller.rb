@@ -38,6 +38,14 @@ class FriendsController < ApplicationController
     @friend.destroy
   end
 
+  # POST /friends/1/send_magic_link
+  def send_magic_link
+    email = friend_params[:email]
+    @friend = Friend.find_by(email:)
+    friend_sgid = @friend.to_sgid
+    # TODO: call the mailer
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -47,6 +55,6 @@ class FriendsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def friend_params
-    params.fetch(:friend, {})
+    params.fetch(:friend)
   end
 end
